@@ -3001,6 +3001,10 @@ h6 {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+
+	.service-three__single::before {
+		font-size: 300px;
+	}
 }
 
 .portfolio-one__home-two {
@@ -6201,6 +6205,9 @@ display: inline-block;
 }
 
 @media only screen and (max-width: 600px) {
+	.service-three__single::before {
+		display: none;
+	}
 	.contact-two {
 		padding-bottom: 50px!important;
 	}

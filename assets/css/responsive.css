@@ -237,7 +237,7 @@
 
     .service-three__single::after,
     .service-three__single::before {
-        top: 50%;
+        top: 60%;
     }
 
     .service-three__single {
