@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
     function success() {
         form.reset();
         button.style = "display: none";
-        status.style = "color: #69C46D; text-align: center; padding-top: 20px";
+        status.style = "color: #ffffff; text-align: center; padding-top: 20px";
         status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
     }
 
