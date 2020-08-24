@@ -8,42 +8,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
  // Success and Error functions for after the form is submitted
  
- function success() {
-   form.reset();
-   button.style = "display: none";
-   status.style = "color: #69C46D; text-align: center; padding-top: 20px";
-   status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
- }
-
- function error() {
-   status.innerHTML = "אוי לא, קרתה שגיאה";
-   status.style = "color: red ";
- }
-
- // handle the form submission event
-
- form.addEventListener("submit", function(ev) {
-   ev.preventDefault();
-   var data = new FormData(form);
-   ajax(form.method, form.action, data, success, error);
- });
-});
-
-// helper function for sending an AJAX request
-
-function ajax(method, url, data, success, error) {
- var xhr = new XMLHttpRequest();
- xhr.open(method, url);
- xhr.setRequestHeader("Accept", "application/json");
- xhr.onreadystatechange = function() {
-   if (xhr.readyState !== XMLHttpRequest.DONE) return;
-   if (xhr.status === 200) {
-     success(xhr.response, xhr.responseType);
-   } else {
-     error(xhr.status, xhr.response, xhr.responseType);
-   }
- };
- xhr.send(data);
+ 
 }
 
 jQuery(document).ready(function ($) {
@@ -123,17 +88,53 @@ jQuery(document).ready(function ($) {
                     required: true
                 }
             },
-            submitHandler: function (form) {
-                // sending value with ajax request
-                $.post($(form).attr('action'), $(form).serialize(), function (response) {
-                    $(form).parent().find('.result').append(response);
-                    $(form).find('input[type="text"]').val('');
-                    $(form).find('input[type="email"]').val('');
-                    $(form).find('textarea').val('');
-                    console.log(response);
-                });
-                return false;
-            }
+//             submitHandler: function (form) {
+//                 // sending value with ajax request
+//                 $.post($(form).attr('action'), $(form).serialize(), function (response) {
+//                     $(form).parent().find('.result').append(response);
+//                     $(form).find('input[type="text"]').val('');
+//                     $(form).find('input[type="email"]').val('');
+//                     $(form).find('textarea').val('');
+//                     console.log(response);
+//                 });
+//                 return false;
+//             }
+         function success() {
+   form.reset();
+   button.style = "display: none";
+   status.style = "color: #69C46D; text-align: center; padding-top: 20px";
+   status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
+ }
+
+ function error() {
+   status.innerHTML = "אוי לא, קרתה שגיאה";
+   status.style = "color: red ";
+ }
+
+ // handle the form submission event
+
+ form.addEventListener("submit", function(ev) {
+   ev.preventDefault();
+   var data = new FormData(form);
+   ajax(form.method, form.action, data, success, error);
+ });
+});
+
+// helper function for sending an AJAX request
+
+function ajax(method, url, data, success, error) {
+ var xhr = new XMLHttpRequest();
+ xhr.open(method, url);
+ xhr.setRequestHeader("Accept", "application/json");
+ xhr.onreadystatechange = function() {
+   if (xhr.readyState !== XMLHttpRequest.DONE) return;
+   if (xhr.status === 200) {
+     success(xhr.response, xhr.responseType);
+   } else {
+     error(xhr.status, xhr.response, xhr.responseType);
+   }
+ };
+ xhr.send(data);
         });
     }
 
