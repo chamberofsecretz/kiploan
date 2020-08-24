@@ -1,16 +1,3 @@
-window.addEventListener("DOMContentLoaded", function() {
-
- // get the form elements defined in your form HTML above
- 
- var form = document.getElementById("form");
- var button = document.getElementById("contact-form-submit");
- var status = document.getElementById("contact-form-status");
-
- // Success and Error functions for after the form is submitted
- 
- 
-}
-
 jQuery(document).ready(function ($) {
     "use strict";
     //  TESTIMONIALS CAROUSEL HOOK
@@ -39,141 +26,46 @@ jQuery(document).ready(function ($) {
 (function ($) {
     "use strict";
 
-    if ($('.service-five__box').length) {
-        $('.service-five__box').on('mouseover', function () {
-            $('.service-five__box.active').removeClass('active');
-            $(this).addClass('active');
-        });
+    var form = document.getElementById("form");
+    var button = document.getElementById("contact-form-submit");
+    var status = document.getElementById("contact-form-status");
+
+
+    function success() {
+        form.reset();
+        button.style = "display: none";
+        status.style = "color: #69C46D; text-align: center; padding-top: 20px";
+        status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
     }
 
-    if ($('.accrodion-grp').length) {
-        var accrodionGrp = $('.accrodion-grp');
-        accrodionGrp.each(function () {
-            var accrodionName = $(this).data('grp-name');
-            var Self = $(this);
-            var accordion = Self.find('.accrodion');
-            Self.addClass(accrodionName);
-            Self.find('.accrodion .accrodion-content').hide();
-            Self.find('.accrodion.active').find('.accrodion-content').show();
-            accordion.each(function () {
-                $(this).find('.accrodion-title').on('click', function () {
-                    if ($(this).parent().hasClass('active') === false) {
-                        $('.accrodion-grp.' + accrodionName).find('.accrodion').removeClass('active');
-                        $('.accrodion-grp.' + accrodionName).find('.accrodion').find('.accrodion-content').slideUp();
-                        $(this).parent().addClass('active');
-                        $(this).parent().find('.accrodion-content').slideDown();
-                    };
-                });
-            });
-        });
-
-    };
-
-
-
-    if ($('.contact-form-validated').length) {
-        $('.contact-form-validated').validate({ // initialize the plugin
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true
-                },
-                subject: {
-                    required: true
-                }
-            },
-//             submitHandler: function (form) {
-//                 // sending value with ajax request
-//                 $.post($(form).attr('action'), $(form).serialize(), function (response) {
-//                     $(form).parent().find('.result').append(response);
-//                     $(form).find('input[type="text"]').val('');
-//                     $(form).find('input[type="email"]').val('');
-//                     $(form).find('textarea').val('');
-//                     console.log(response);
-//                 });
-//                 return false;
-//             }
-         function success() {
-   form.reset();
-   button.style = "display: none";
-   status.style = "color: #69C46D; text-align: center; padding-top: 20px";
-   status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
- }
-
- function error() {
-   status.innerHTML = "אוי לא, קרתה שגיאה";
-   status.style = "color: red ";
- }
-
- // handle the form submission event
-
- form.addEventListener("submit", function(ev) {
-   ev.preventDefault();
-   var data = new FormData(form);
-   ajax(form.method, form.action, data, success, error);
- });
-});
-
-// helper function for sending an AJAX request
-
-function ajax(method, url, data, success, error) {
- var xhr = new XMLHttpRequest();
- xhr.open(method, url);
- xhr.setRequestHeader("Accept", "application/json");
- xhr.onreadystatechange = function() {
-   if (xhr.readyState !== XMLHttpRequest.DONE) return;
-   if (xhr.status === 200) {
-     success(xhr.response, xhr.responseType);
-   } else {
-     error(xhr.status, xhr.response, xhr.responseType);
-   }
- };
- xhr.send(data);
-        });
+    function error() {
+        status.innerHTML = "אוי לא, קרתה שגיאה";
+        status.style = "color: red ";
     }
 
-    if ($('.mc-form').length) {
+    // handle the form submission event
 
-        $('.mc-form').each(function () {
-            var Self = $(this);
-            var mcURL = Self.data('url');
-            var mcResp = Self.parent().find('.mc-form__response');
+    form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var data = new FormData(form);
+        ajax(form.method, form.action, data, success, error);
+    });
 
-            Self.ajaxChimp({
-                url: mcURL,
-                callback: function (resp) {
-                    // appending response
-                    mcResp.append(function () {
-                        return '<p class="mc-message">' + resp.msg + '</p>';
-                    })
-                    // making things based on response
-                    if (resp.result === 'success') {
-                        // Do stuff
-                        Self.removeClass('errored').addClass('successed');
-                        mcResp.removeClass('errored').addClass('successed');
-                        Self.find('input').val('');
+    // helper function for sending an AJAX request
 
-                        mcResp.find('p').fadeOut(10000);
-
-                    }
-                    if (resp.result === 'error') {
-                        Self.removeClass('successed').addClass('errored');
-                        mcResp.removeClass('successed').addClass('errored');
-                        Self.find('input').val('');
-
-                        mcResp.find('p').fadeOut(10000);
-
-                    }
-                }
-            });
-
-        });
+    function ajax(method, url, data, success, error) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status === 200) {
+                success(xhr.response, xhr.responseType);
+            } else {
+                error(xhr.status, xhr.response, xhr.responseType);
+            }
+        };
+        xhr.send(data);
     }
 
     //Submenu Dropdown Toggle
@@ -574,5 +466,4 @@ function ajax(method, url, data, success, error) {
 
 
     });
-
 })(jQuery);
