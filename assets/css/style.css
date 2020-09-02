@@ -6200,7 +6200,9 @@ display: inline-block;
 	width: 20px;
 }
 .topnav__logo img{
-	margin-top: -120px;
+	position: absolute;
+	z-index: 99;
+	margin-top: 25px;
 	width: 80px;
 }
 

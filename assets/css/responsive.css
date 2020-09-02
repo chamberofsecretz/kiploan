@@ -120,6 +120,9 @@
 }
 
 @media(max-width: 991px) {
+    .topnav__logo img {
+		margin-top: -90px;
+    }
     .block-title br {
         display: none;
     }
@@ -227,7 +230,7 @@
     }
 
     .contact-two__form {
-        padding-top: 50px;
+        padding-top: 25px;
         padding-bottom: 0;
     }
 
@@ -308,6 +311,10 @@
 }
 
 @media(max-width: 767px) {
+    .col-lg-6.d-flex {
+        order: 2;
+        margin-top: 50px;
+    }
     .blog-details__content [class*=col-] {
         margin-bottom: 25px;
     }
@@ -366,7 +373,6 @@
 }
 
 @media(max-width: 575px) {
-
     .page-header {
         padding-top: 170px;
         padding-bottom: 90px;
