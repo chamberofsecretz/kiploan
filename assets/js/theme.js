@@ -26,22 +26,22 @@ jQuery(document).ready(function ($) {
 (function ($) {
     "use strict";
 
-    var form = document.getElementById("form");
-    var button = document.getElementById("contact-form-submit");
-    var status = document.getElementById("contact-form-status");
+//     var form = document.getElementById("form");
+//     var button = document.getElementById("contact-form-submit");
+//     var status = document.getElementById("contact-form-status");
 
 
-    function success() {
-        form.reset();
-        button.style = "display: none";
-        status.style = "color: #ffffff; text-align: center; padding-top: 20px";
-        status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
-    }
+//     function success() {
+//         form.reset();
+//         button.style = "display: none";
+//         status.style = "color: #ffffff; text-align: center; padding-top: 20px";
+//         status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
+//     }
 
-    function error() {
-        status.innerHTML = "אוי לא, קרתה שגיאה";
-        status.style = "color: red ";
-    }
+//     function error() {
+//         status.innerHTML = "אוי לא, קרתה שגיאה";
+//         status.style = "color: red ";
+//     }
 
     // handle the form submission event
 
