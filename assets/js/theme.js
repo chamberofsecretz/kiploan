@@ -30,6 +30,32 @@ jQuery(document).ready(function ($) {
     var button = document.getElementById("contact-form-submit");
     var status = document.getElementById("contact-form-status");
 
+    // /* attach a submit handler to the form */
+    // $("#form").submit(function (event) {
+
+    //     /* stop form from submitting normally */
+    //     event.preventDefault();
+
+    //     /* get the action attribute from the <form action=""> element */
+    //     var $form = $(this),
+    //         url = $form.attr('action');
+
+    //     /* Send the data using post with element id name and name2*/
+    //     var posting = $.post(url, {
+    //         name: $('#name').val(),
+    //         mobile: $('#mobile').val(),
+    //         _cf_17365: $('#_cf_17365').val(),
+    //         _cf_17364: $('#_cf_17364').val()
+    //     });
+
+    //     /* Alerts the results */
+    //     posting.done(function (data) {
+    //         $('#contact-form-status').text('הטופס נשלח בהצלחה, אנו ניצור איתך קשר בהקדם');
+    //     });
+    //     posting.fail(function () {
+    //         $('#contact-form-status').text('הטופס נשלח בהצלחה, אנו ניצור איתך קשר בהקדם');
+    //     });
+    // });
 
     function success() {
         form.reset();
@@ -38,32 +64,28 @@ jQuery(document).ready(function ($) {
         status.innerHTML = "הטופס נשלח בהצלחה! </br> נחזור אליכם בהקדם";
     }
 
-    function error() {
-        status.innerHTML = "אוי לא, קרתה שגיאה";
-        status.style = "color: red ";
-    }
+    // function error() {
+    //     status.innerHTML = "אוי לא, קרתה שגיאה";
+    //     status.style = "color: red ";
+    // }
 
-//     handle the form submission event
+    //     handle the form submission event
 
     form.addEventListener("submit", function (ev) {
         ev.preventDefault();
         var data = new FormData(form);
-        ajax(form.method, form.action, data, success, error);
+        ajax(form.method, form.action, data, success);
     });
 
     // helper function for sending an AJAX request
 
-    function ajax(method, url, data, success, error) {
+    function ajax(method, url, data, success) {
         var xhr = new XMLHttpRequest();
         xhr.open(method, url);
         xhr.setRequestHeader("Accept", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            if (xhr.status === 200) {
-                success(xhr.response, xhr.responseType);
-//             } else {
-//                 error(xhr.status, xhr.response, xhr.responseType);
-//             }
+            success(xhr.response, xhr.responseType);
         };
         xhr.send(data);
     }
