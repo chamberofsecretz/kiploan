@@ -61,9 +61,9 @@ jQuery(document).ready(function ($) {
             if (xhr.readyState !== XMLHttpRequest.DONE) return;
             if (xhr.status === 200) {
                 success(xhr.response, xhr.responseType);
-            } else {
-                error(xhr.status, xhr.response, xhr.responseType);
-            }
+//             } else {
+//                 error(xhr.status, xhr.response, xhr.responseType);
+//             }
         };
         xhr.send(data);
     }
